@@ -1,95 +1,81 @@
-import java.util.Vector;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class Agenda {
     //private Pessoa pessoa;
-    private static int total_pessoas=0;
-    private static Vector pessoas = new Vector<Pessoa>();
+    private static List<Pessoa> pessoas = new ArrayList<Pessoa>();
+    ;
 
-    public void armazenaPessoa(String nome, int idade, float altura){
-
-        Pessoa pessoa2 = new Pessoa(nome , altura, idade);
-
-
-        adiciona(pessoa2);
+    public static List<Pessoa> getPessoas() {
+        return pessoas;
     }
 
-    public void imprimePessoa(int i){
-
-        if (this.pessoas.get(i) != null ){
-            Pessoa temp = (Pessoa) this.pessoas.get(i);
-            temp.getDados();
-
-
-        }
-
-
+    public static void setPessoas(List<Pessoa> pessoas) {
+        Agenda.pessoas = pessoas;
     }
+
+
+/**
+    public void armazenaPessoa(String nome, int idade, Double altura){
+        adiciona(new PessoaTratamento(nome , altura, idade));
+    }
+
+
 
     public void imprimeAgenda(){
-        for(int i = 0 ; i< total_pessoas ;i++ ){
-            imprimePessoa(i);
+      this.pessoas.forEach(s -> s.getDados());
 
+    }
+    public void imprimePessoa(int i){
+        try{
+            this.pessoas.get(i).getDados();
+        }catch (IndexOutOfBoundsException ex){
+            System.out.println("A pessoa não está na lista");
         }
 
     }
 
-    public boolean adiciona(Pessoa pessoa){
-        if (total_pessoas <=10 && buscaPessoa(pessoa.getNome() ) < 0){
 
-            pessoas.add(total_pessoas, pessoa);
+    public void adiciona(Pessoa pessoa){
 
-            total_pessoas++;
 
-            return true;
-        }else{
 
-            System.out.println("A agenda está Cheia =( ou a pessoa já está na lista");
-
-            return false;
+        if (this.pessoas.size()<10
+                && !pessoas.contains(pessoa)
+                && pessoa.getValido()){
+            pessoas.add(pessoa);
+            return;
         }
-
+            System.out.println("A agenda está Cheia =( ou a pessoa já está na lista ou nome nulo");
 
     }
 
 
-    public static int buscaPessoa(String nome_busca) {
-        // informa em que posição da agenda está a pessoa
-        int position = -1;// se retornar negativo quer dizer que o nome nao consta na lista
-
-        for (int i = 0; i < total_pessoas; i++) {
+    public int buscaPessoa(String nome_busca) {
+        //int[] position = {-1};
+        //int a;
 
 
+        return  IntStream.range(0, this.pessoas.size())
+                .filter(i -> this.pessoas.get(i).getNome().equals(nome_busca))
+                .findFirst()
+                .orElse(-1);
 
-            Pessoa temp = (Pessoa) pessoas.get(i);
-
-            if (temp.getNome().equals(nome_busca)) {
-
-                position = i;
-
-            }
-        }
-
-        return position;
     }
 
 
 
     public void removePessoa(String nome_busca){
-
-        int index = buscaPessoa(nome_busca);
-
-        if (index >=0){
-
-            pessoas.remove(index);
-            total_pessoas--;
-
-        }else{
-
-            System.out.println("pessoa não encontrada =(");
-
-
-
+        try{
+            this.pessoas.remove(buscaPessoa(nome_busca));
+        }catch(IndexOutOfBoundsException ex){
+            System.out.println("A pessoa não está na lista");
         }
-    }
 
+    }
+    */
 
 }

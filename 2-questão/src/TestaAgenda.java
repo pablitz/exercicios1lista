@@ -1,28 +1,39 @@
+import java.math.BigDecimal;
+
 public class TestaAgenda {
 
     public static void main(String[] args) {
-        Pessoa jack = new Pessoa("jack", 1.80, 25 );
-        Pessoa jackson = new Pessoa("jackson", 1.80, 25 );
-        Pessoa Dio = new Pessoa("Dio", 1.80, 25 );
-        Agenda agenda = new Agenda();
+        //Pessoa jack = new PessoaTratamento( );
+        Pessoa jackson = new PessoaTratamento( );
+        Pessoa Dio = new PessoaTratamento();
+        AgendaTratamento agenda = new AgendaTratamento();
 
-        agenda.adiciona(jack);
+        agenda.armazenaPessoa("jack",25,1.80);
 
-        agenda.adiciona(jackson);
+        agenda.armazenaPessoa(jackson);
 
-        agenda.adiciona(jack);
-
-        System.out.println(agenda.buscaPessoa("jackson"));
-
-        agenda.removePessoa("jack");
-
-        agenda.adiciona(jack);
-
-        agenda.adiciona(Dio);
-
-        agenda.imprimePessoa(1);
+        agenda.armazenaPessoa(Dio);
 
         agenda.imprimeAgenda();
+
+        //agenda.adiciona(jack);
+
+        //System.out.println(agenda.buscaPessoa("jack"));
+
+        //agenda.removePessoa("jack");
+
+        //agenda.adiciona(jack);
+
+
+
+        //agenda.imprimePessoa(1);
+
+
+
+        //System.out.println(agenda.buscaPessoa("Dio"));
+       // System.out.println(agenda.buscaPessoa("HEHEXD"));
+        //agenda.removePessoa("jack");
+        //agenda.removePessoa("jack");
     }
 
 
