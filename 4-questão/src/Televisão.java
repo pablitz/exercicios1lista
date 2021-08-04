@@ -1,10 +1,10 @@
 public class Televisão {
 
     private int canal = 1;
-    private int volume = 0;
+    private int volume ;
 
     public int getCanal() {
-        return canal;
+        return this.canal;
     }
 
     public void setCanal(int canal) {

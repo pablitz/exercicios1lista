@@ -1,9 +1,33 @@
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Elevador {
 
-    private int Andar_atual=0;
+    private int Andar_atual;
     private int Andar_total;
+    private static List<Pessoa> pessoas = new ArrayList<Pessoa>();
     private int Capacidade;
-    private int Qtd_de_pessoas=0;
+    private BigDecimal peso_max;
+    private int Qtd_de_pessoas;
+
+    public static List<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public BigDecimal getPeso_max() {
+        return peso_max;
+    }
+
+    public void setPeso_max(BigDecimal peso_max) {
+        this.peso_max = peso_max;
+    }
+
+    public static void setPessoas(List<Pessoa> pessoas) {
+        Elevador.pessoas = pessoas;
+    }
+
+
 
     public int getAndar_atual() {
         return Andar_atual;
@@ -29,9 +53,7 @@ public class Elevador {
         Capacidade = capacidade;
     }
 
-    public int getQtd_de_pessoas() {
-        return Qtd_de_pessoas;
-    }
+    public int getQtd_de_pessoas() {return Qtd_de_pessoas; }
 
     public void setQtd_de_pessoas(int qtd_de_pessoas) {
         Qtd_de_pessoas = qtd_de_pessoas;
@@ -40,40 +62,9 @@ public class Elevador {
     public void inicializa(int capacidade, int andar_total ){
             setCapacidade(capacidade);
             setAndar_total(andar_total);
+            setPeso_max(new BigDecimal(capacidade*80));
     }
 
-    public void Entra(){
 
-        if( Qtd_de_pessoas < Capacidade){
-            setQtd_de_pessoas(Qtd_de_pessoas + 1);
-        }else {
-            System.out.println("o elevador está cheio");
-        }
-
-    }
-
-    public void Sai(){
-        if( Qtd_de_pessoas > 0){
-            setQtd_de_pessoas(Qtd_de_pessoas - 1);
-        }else {
-            System.out.println("o elevador está vazio");
-        }
-    }
-
-    public void Sobe(){
-        if(Andar_atual <Andar_total){
-            setAndar_atual(this.Andar_atual + 1 );
-        }else{
-            System.out.println("o elevador está no ultimo andar");
-        }
-    }
-
-    public void Desce(){
-        if(Andar_atual >0){
-            setAndar_atual(this.Andar_atual - 1);
-        }else{
-            System.out.println("o elevador está no terreo");
-        }
-    }
 
 }
