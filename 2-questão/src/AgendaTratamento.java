@@ -1,19 +1,20 @@
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class AgendaTratamento extends Agenda {
+public class AgendaTratamento  {
 
-    List<Pessoa> pessoas = getPessoas();
 
+    Agenda agenda = new Agenda();
+    List<Pessoa> pessoas = agenda.getPessoas();
     public void armazenaPessoa(String nome, int idade, Double altura){
-
-        Pessoa pessoa=new PessoaTratamento(nome , altura, idade);
+        Pessoa pessoa = new Pessoa(nome, altura, idade);
+        PessoaTratamento pessoaT=new PessoaTratamento(pessoa);
 
         if (this.pessoas.size()<10
                 && !pessoas.contains(pessoa)
-                && pessoa.getValido()){
+                && pessoaT.getValido()){
             pessoas.add(pessoa);
-            setPessoas(pessoas);
+            agenda.setPessoas(pessoas);
             return;
         }
         System.out.println("A agenda está Cheia =( ou a pessoa já está na lista ou nome nulo");
@@ -22,13 +23,13 @@ public class AgendaTratamento extends Agenda {
 
     public void armazenaPessoa(Pessoa pessoa){
 
-
+        PessoaTratamento pessoaT=new PessoaTratamento(pessoa);
 
         if (this.pessoas.size()<10
                 && !pessoas.contains(pessoa)
-                && pessoa.getValido()){
+                && pessoaT.getValido()){
             pessoas.add(pessoa);
-            setPessoas(pessoas);
+            agenda.setPessoas(pessoas);
             return;
         }
         System.out.println("A agenda está Cheia =( ou a pessoa já está na lista ou nome nulo");
@@ -69,7 +70,7 @@ public class AgendaTratamento extends Agenda {
     public void removePessoa(String nome_busca){
         try{
             this.pessoas.remove(buscaPessoa(nome_busca));
-            setPessoas(pessoas);
+            agenda.setPessoas(pessoas);
         }catch(IndexOutOfBoundsException ex){
             System.out.println("A pessoa não está na lista");
         }

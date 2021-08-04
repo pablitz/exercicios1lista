@@ -4,46 +4,27 @@ import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class PessoaTratamento extends Pessoa{
+public class PessoaTratamento {
 
-    public PessoaTratamento(String nome, Double altura , int idade){
-        setNome(Optional.ofNullable(nome).orElseGet(()->"nome nulo"));
-        try{
-
-
-            setAltura(Optional.ofNullable(altura).orElseGet(()-> -1.0));
-
-        }catch (InputMismatchException ex){
-
-            System.out.println("erro ao digitar altura:digite números por favor");
-
-        }
-
-        try{
-
-
-            setIdade(Optional.ofNullable(idade).orElseGet(()-> -1));
-
-
-        }catch (InputMismatchException ex){
-
-            System.out.println("erro ao digitar idade : digite números por favor");
-
-        }
+    Pessoa pessoa = new Pessoa();
+    boolean valido= true;
+    public PessoaTratamento(Pessoa nova_pessoa){
+        pessoa =nova_pessoa;
         valida();
     }
 
     public PessoaTratamento() {
+
         //System.out.println("digite a data no formato yyyy-mm-dd");
         System.out.println("Digite o novo nome a ser adicionado na agenda");
         //Optional<String> nome2 = Optional.ofNullable(nome);
         Scanner scan = new Scanner(System.in);
-        setNome(Optional.ofNullable(scan.nextLine()).orElseGet(()->""));
+        pessoa.setNome(Optional.ofNullable(scan.nextLine()).orElseGet(()->""));
 
         try{
 
             System.out.println("Digite a nova altura a ser adicionado na agenda");
-            setAltura(Optional.ofNullable(scan.nextDouble()).orElseGet(()-> -1.0));
+            pessoa.setAltura(Optional.ofNullable(scan.nextDouble()).orElseGet(()-> -1.0));
 
         }catch (InputMismatchException ex){
 
@@ -54,7 +35,7 @@ public class PessoaTratamento extends Pessoa{
         try{
 
             System.out.println("Digite a nova idade a ser adicionado na agenda");
-            setIdade(Optional.ofNullable(scan.nextInt()).orElseGet(()-> -1));
+            pessoa.setIdade(Optional.ofNullable(scan.nextInt()).orElseGet(()-> -1));
 
 
         }catch (InputMismatchException ex){
@@ -67,10 +48,20 @@ public class PessoaTratamento extends Pessoa{
 
     }
 
+
+
+    public boolean getValido() {
+        return this.valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+
     public int getIdadeData(){
 
 
-        LocalDate l = LocalDate.parse(getData());
+        LocalDate l = LocalDate.parse(pessoa.getData());
         LocalDate now = LocalDate.now(); //gets localDate
         Period diff = Period.between(l, now); //difference between the dates is calculated
 
@@ -79,7 +70,8 @@ public class PessoaTratamento extends Pessoa{
     }
 
     void valida(){
-        if (getIdade() <=0 || getNome().equals("") || getAltura() <=0){
+        if (pessoa.getIdade() <=0 || pessoa.getNome().equals("") || pessoa.getAltura() <=0){
+
             setValido(false);
             return;
         }

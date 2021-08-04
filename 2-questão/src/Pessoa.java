@@ -10,16 +10,16 @@ public class Pessoa {
     private Double altura;
     private String data = "1999-05-03" ;
     private int idade;
-    boolean valido;
 
-    public boolean getValido() {
-        return this.valido;
+    public Pessoa(String nome ,Double altura, int idade){
+        setAltura(altura);
+        setIdade(idade);
+        setNome(nome);
     }
 
-    public void setValido(boolean valido) {
-        this.valido = valido;
-    }
+    public Pessoa(){
 
+    }
     public String getNome() {
         return this.nome;
     }
@@ -53,7 +53,7 @@ public class Pessoa {
         System.out.println("A idade é : " + getIdade()+ " anos");
         System.out.println("A altura é : " + getAltura()+ " metros");
         //System.out.println("A data de nascimento é : " + getData());
-        System.out.println("A pessoa é um individuo valido : " + getValido());
+        //System.out.println("A pessoa é um individuo valido : " + getValido());
 
     }
 

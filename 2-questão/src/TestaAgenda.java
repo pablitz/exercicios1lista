@@ -3,12 +3,12 @@ import java.math.BigDecimal;
 public class TestaAgenda {
 
     public static void main(String[] args) {
-        //Pessoa jack = new PessoaTratamento( );
-        Pessoa jackson = new PessoaTratamento( );
-        Pessoa Dio = new PessoaTratamento();
+        Pessoa jack = new Pessoa("jack",1.80,25 );
+        Pessoa jackson = new Pessoa("jackson",1.80,25);
+        Pessoa Dio = new Pessoa("dio",1.80,24);
         AgendaTratamento agenda = new AgendaTratamento();
 
-        agenda.armazenaPessoa("jack",25,1.80);
+        agenda.armazenaPessoa(Dio);
 
         agenda.armazenaPessoa(jackson);
 
